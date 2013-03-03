@@ -65,7 +65,7 @@ function generate_items(){
 
   var user_input = $('#inputbox').val();
 
-  if (user_input == ""){
+  if (user_input === ""){
     ranked = false;
 
   } else {
@@ -85,24 +85,35 @@ function generate_items(){
 function display_results(){
   // here we dont care about the rank, display results in their order
   var full_name = "";
+  var child_count = 0;
   $('#itemsdiv').empty();
 
   if (ranked){
+
     for (var i = 0; i < items.length; i++){
       full_name = items[i].f_name + ' ' + items[i].l_name;
+
       if (items[i].rank > 0){
         $('#itemsdiv').append('<input type="checkbox" value="chkbx_' +
           items[i].id + '">' + full_name + '</input><br/>');
+        child_count += 1;
       }
     }
 
   } else {
+
     sortResults('f_name', true);
+
     for (var i = 0; i < items.length; i++){
       full_name = items[i].f_name + ' ' + items[i].l_name;
       $('#itemsdiv').append('<input type="checkbox" value="chkbx_' +
         items[i].id + '">' + full_name + '</input><br/>');
+      child_count += 1;
     }
+  }
+
+  if (child_count === 0) {
+    $('#itemsdiv').append('<b>sorry, not found</b><br />');
   }
 }
 
