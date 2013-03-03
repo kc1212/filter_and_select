@@ -6,62 +6,62 @@ var items = [
       "f_name": "Giannino",
       "l_name": "Uberto",
       "id": 3,
-      "rank": -1
+      "rank": 0
       // rank: to be determined
     },
     {
       "f_name": "Augustinus",
       "l_name": "Filibert",
       "id": 5,
-      "rank": -1
+      "rank": 0
     },
     {
       "f_name": "Raoul",
       "l_name": "Willifrid",
       "id": 13,
-      "rank": -1
+      "rank": 0
     },
     {
       "f_name": "Stanimir",
       "l_name": "Akim",
       "id": 43,
-      "rank": -1
+      "rank": 0
     },
     {
       "f_name": "Maya",
       "l_name": "Fletcher",
       "id": 4,
-      "rank": -1
+      "rank": 0
     },
     {
       "f_name": "Kyle",
       "l_name": "Williamson",
       "id": 11,
-      "rank": -1
+      "rank": 0
     },
     {
       "f_name": "Millie",
       "l_name": "Naylor",
       "id": 59,
-      "rank": -1
+      "rank": 0
     },
     {
       "f_name": "Georgia",
       "l_name": "Howell",
       "id": 9,
-      "rank": -1
+      "rank": 0
     },
     {
       "f_name": "Alexandra",
       "l_name": "Cole",
       "id": 71,
-      "rank": -1
+      "rank": 0
     }
 ];
 
 window.onload = display_results;
 
-function generate_items(){
+function rank_display_results(){
 
   var user_input = $('#inputbox').val();
 
@@ -88,18 +88,20 @@ function display_results(){
   var child_count = 0;
   $('#itemsdiv').empty();
 
+  // if string score was performed
   if (ranked){
 
-    for (var i = 0; i < items.length; i++){
+    for (var i = 0; i < items.length; i+=1){
       full_name = items[i].f_name + ' ' + items[i].l_name;
 
       if (items[i].rank > 0){
         $('#itemsdiv').append('<input type="checkbox" value="chkbx_' +
-          items[i].id + '">' + full_name + '</input><br/>');
+          items[i].id + '">' + full_name + /*': ' + items[i].rank +*/ '</input><br/>');
         child_count += 1;
       }
     }
 
+  // if string score was NOT performed
   } else {
 
     sortResults('f_name', true);
@@ -107,11 +109,12 @@ function display_results(){
     for (var i = 0; i < items.length; i++){
       full_name = items[i].f_name + ' ' + items[i].l_name;
       $('#itemsdiv').append('<input type="checkbox" value="chkbx_' +
-        items[i].id + '">' + full_name + '</input><br/>');
+        items[i].id + '">' + full_name + /*': ' + items[i].rank +*/ '</input><br/>');
       child_count += 1;
     }
   }
 
+  // display sorry not found message if there are no results
   if (child_count === 0) {
     $('#itemsdiv').append('<b>sorry, not found</b><br />');
   }
