@@ -146,10 +146,10 @@ function checkbox_action(i){
   full_name = items[i].f_name + ' ' + items[i].l_name;
   if ($('input[id="chkbox_' + i + '"]').is(':checked')){
     items[i].checked = true;
-    $('#selected').append('<span id=selected_' + i + '>' + full_name + ', </span>');
+    $('#selected').append('<span id=selected_' + items[i].id + '>' + full_name + ', </span>');
   } else {
     items[i].checked = false;
-    $('#selected_' + i).remove();
+    $('#selected_' + items[i].id).remove();
     // console.log('action: unchecked!');
   }
   // items[i].checked = $('input[id="chkbox_' + i + '"]').is(':checked') ? true : false;
